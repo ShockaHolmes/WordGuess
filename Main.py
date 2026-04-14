@@ -84,6 +84,8 @@ def play_game():
     while wrong_guesses < max_guesses:
         print("\nWord:", display_word(secret_word, guessed_letters))
         print("Guesses left:", max_guesses - wrong_guesses)
+        if guessed_letters:
+            print("Used letters:", " ".join(sorted(guessed_letters)))
 
         guess = get_guess(guessed_letters)
         guessed_letters.append(guess)
