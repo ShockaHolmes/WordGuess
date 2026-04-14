@@ -1,4 +1,33 @@
+from abc import ABC, abstractmethod
+import person_interface
+from person import Person       
+
 import random
+
+class PersonInterface(ABC):
+    
+    
+    score: int = 0
+
+    def __init__(self):
+        super().__init__()  
+
+    def name(self):
+        what_is_your_name = input("What is your name? ")
+
+
+    @abstractmethod
+    def get_first_name(self) -> str:
+        """Get the first name."""
+        pass
+
+    @abstractmethod
+    def __str__(self) -> str:
+
+        pass
+
+    def display_score(self) -> None:
+        print(f"Score: {self.score}")
 
 def get_word():
     words = ["python", "dragon", "castle", "wizard", "adventure", "advice", "computer", "programming", "challenge", "mystery"]
@@ -62,10 +91,23 @@ def play_game():
     print("\nYou LOST! Word was:", secret_word)
 
 if __name__ == "__main__":
+    # Prompt for player's name and store on a Person instance
+    full_name = input("What is your name? ").strip()
+    player = Person()
+    if full_name:
+        parts = full_name.split(" ", 1)
+        player.set_first_name(parts[0])
+        if len(parts) > 1:
+            player.set_last_name(parts[1])
+
+    print(f"Hello, {player.get_first_name() or 'Player'}! Welcome to Word Guess!")
+
     play_game()
 
-    question = input("Play again? (y/n): ").lower()
-    if question == 'y':
-        play_game()     
+    while True:
+        question = input("Play again? (y/n): ").lower()
+        if question == 'y':
+            play_game()
+        else:
+            break
 
-        
