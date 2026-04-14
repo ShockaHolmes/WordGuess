@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 
 class PersonInterface(ABC):
     """Interface defining the contract for Person objects."""
+
+    score: int = 0
     
     @abstractmethod
     def get_first_name(self) -> str:
@@ -38,3 +40,6 @@ class PersonInterface(ABC):
     def __str__(self) -> str:
         """Return string representation."""
         pass
+
+    def display_score(self) -> None:
+        print(f"Score: {self.score}")

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import person_interface
-from person import Person       
+from person import Person      
+import sys
 
 import random
 
@@ -44,7 +45,12 @@ def display_word(secret_word, guessed_letters):
 
 def get_guess(guessed_letters):
     while True:
-        guess = input("Guess a letter: ").lower()
+        guess = input("Guess a letter (or type 'quit' to exit): ").strip().lower()
+
+        # allow the player to quit mid-game
+        if guess in ("quit", "exit", "!"):
+            print("Quitting game.")
+            sys.exit(0)
 
         if len(guess) != 1 or not guess.isalpha():
             print("Enter ONE letter only.")
@@ -110,4 +116,5 @@ if __name__ == "__main__":
             play_game()
         else:
             break
+
 
